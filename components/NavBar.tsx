@@ -6,11 +6,11 @@ export default function NavBar() {
             <ul className="flex gap-2 ">
                 <li>
                     <Link href="/"
-                          className="text-blue-800 hover:underline">
-                        Home
+                          className="font-inter font-bold text-blue-800 hover:underline">
+                        Indie Gamer
                     </Link>
                 </li>
-                <li>
+                <li className="ml-auto">
                     <Link href="/about/" prefetch={false}
                           className="text-blue-800 hover:underline">
                         About
