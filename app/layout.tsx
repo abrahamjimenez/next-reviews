@@ -1,6 +1,6 @@
 import type {ReactNode} from "react";
 import NavBar from "../components/NavBar";
-import {inter} from "./fonts";
+import {inter, manrope} from "./fonts";
 import "./globals.css";
 
 interface LayoutProps {
@@ -9,7 +9,7 @@ interface LayoutProps {
 
 export default function RootLayout({children}: LayoutProps) {
     return (
-        <html lang="en" className={inter.variable}>
+        <html lang="en" className={`${inter.variable} ${manrope.variable}`}>
         <body className="bg-blue-50 flex flex-col px-4 py-2 min-h-screen">
         <header>
             <NavBar/>

@@ -8,6 +8,7 @@ module.exports = {
         extend: {
             fontFamily: {
                 inter: ["var(--font-inter)", "sans-serif"],
+                sans: ["var(--font-manrope)", "serif"]
             },
         },
     },
