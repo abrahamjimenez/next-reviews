@@ -19,10 +19,10 @@ export default function RootLayout({children}: LayoutProps) {
             {children}
         </main>
 
-        <footer className="border-t py-3 text-center text-xs">
+        <footer className="border-t py-3 text-center text-blue-900 text-xs">
             <p>Game data and images from {" "}
                 <a href="https://rawg.io" target="_blank"
-                   className="text-blue-800 hover:underline">
+                   className="text-blue-600 hover:underline">
                     RAWG
                 </a></p>
         </footer>
