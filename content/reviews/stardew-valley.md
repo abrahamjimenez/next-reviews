@@ -1,3 +1,9 @@
+---
+title: "Stardew Valley"
+date: "2023-01-20"
+image: "/images/stardew-valley.jpg"
+---
+
 # Stardew Valley
 
 **Stardew Valley** is a farm life simulation game developed by Eric "ConcernedApe" Barone. Players take the role of a
