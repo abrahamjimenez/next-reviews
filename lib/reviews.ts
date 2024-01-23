@@ -1,4 +1,4 @@
-import {readFile, readdir} from "node:fs/promises";
+import {readdir, readFile} from "node:fs/promises";
 import matter from "gray-matter";
 import {marked} from "marked";
 
@@ -10,6 +10,15 @@ export interface Review {
     slug: string;
 }
 
+// TODO getFeaturedReview
+// return single object with properties - title, body and so on
+// call getReviews() & return first element in the array
+export async function getFeaturedReview() {
+    return (await getReviews())[0];
+}
+
+getFeaturedReview();
+
 export async function getReview(slug: string): Promise<Review> {
     const text = await readFile(`./content/reviews/${slug}.md`, "utf8");
     const {content, data: {title, date, image}} = matter(text);
@@ -19,18 +28,19 @@ export async function getReview(slug: string): Promise<Review> {
 }
 
 export async function getReviews(): Promise<Review[]> {
-    const slugs = await getSlugs()
-
+    const slugs = await getSlugs();
     const reviews = [];
     for (const slug of slugs) {
         const review: Review = await getReview(slug);
         reviews.push(review);
     }
-
+    // TODO sort reviews by most recent first
+    // sort and compare date of each review
+    reviews.sort((a, b) => b.date.localeCompare(a.date));
     return reviews;
 }
 
-export async function getSlugs() : Promise<string[]> {
+export async function getSlugs(): Promise<string[]> {
     const files = await readdir("./content/reviews");
     return files.filter((file) => file.endsWith(".md"))
         .map((file) => file.slice(0, -".md".length));

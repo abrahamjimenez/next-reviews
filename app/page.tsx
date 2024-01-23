@@ -1,20 +1,24 @@
 import Link from "next/link";
 import Heading from "@/components/Heading";
+import {getFeaturedReview} from "@/lib/reviews";
 
-export default function HomePage() {
+export default async function HomePage() {
+    // TODO load featured review
+    const featuredReview = await getFeaturedReview();
+
     return (
         <>
             <Heading>Indie gamer</Heading>
             <p className="pb-3">Best games in the world</p>
             <div className="bg-white border rounded w-80 shadow hover:shadow-xl sm:w-full">
-                <Link href="/reviews/hollow-knight/"
+                <Link href={`/reviews/${featuredReview.slug}/`}
                       className="flex flex-col sm:flex-row"
                 >
-                    <img src="/images/hollow-knight.jpg" alt=""
+                    <img src={featuredReview.image} alt=""
                          width={320} height={180} className="rounded-t sm:rounded-l sm:rounded-r-none"
                     />
                     <h2 className="font-inter font-semibold py-1 text-center sm:px-2">
-                        Hollow Knight
+                        {featuredReview.title}
                     </h2>
                 </Link>
             </div>
