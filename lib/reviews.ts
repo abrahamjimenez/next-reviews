@@ -10,14 +10,10 @@ export interface Review {
     slug: string;
 }
 
-// TODO getFeaturedReview
-// return single object with properties - title, body and so on
-// call getReviews() & return first element in the array
-export async function getFeaturedReview() {
-    return (await getReviews())[0];
+export async function getFeaturedReview(): Promise<Review> {
+    const reviews = await getReviews();
+    return reviews[0];
 }
-
-getFeaturedReview();
 
 export async function getReview(slug: string): Promise<Review> {
     const text = await readFile(`./content/reviews/${slug}.md`, "utf8");
@@ -34,8 +30,6 @@ export async function getReviews(): Promise<Review[]> {
         const review: Review = await getReview(slug);
         reviews.push(review);
     }
-    // TODO sort reviews by most recent first
-    // sort and compare date of each review
     reviews.sort((a, b) => b.date.localeCompare(a.date));
     return reviews;
 }
