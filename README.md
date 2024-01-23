@@ -1,3 +1,4 @@
 This project was to learn Next.js
 
-Visit: https://next-reviews-three-omega.vercel.app/
+Server: https://next-reviews-three-omega.vercel.app/
+Static: https://next-reviews-ajr.netlify.app/
