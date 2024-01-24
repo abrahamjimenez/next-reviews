@@ -25,6 +25,7 @@ export async function generateMetadata({params: {slug}}: ReviewPageProps): Promi
 
 export default async function ReviewPage({params: {slug}}: ReviewPageProps) {
     const review = await getReview(slug);
+    console.log("[ReviewPage]", review);
     return (
         <>
             <Heading>{review.title}</Heading>

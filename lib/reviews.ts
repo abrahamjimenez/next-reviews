@@ -2,6 +2,7 @@ import {readdir, readFile} from "node:fs/promises";
 import matter from "gray-matter";
 import {marked} from "marked";
 import qs from "qs";
+import {attribute} from "postcss-selector-parser";
 
 const CMS_URL = "http://localhost:1337";
 
@@ -40,11 +41,24 @@ export async function getFeaturedReview(): Promise<Review> {
 }
 
 export async function getReview(slug: string): Promise<FullReview> {
-    const text = await readFile(`./content/reviews/${slug}.md`, "utf8");
-    const {content, data: {title, date, image}} = matter(text);
-    const body = await marked(content);
-
-    return {slug, title, date, image, body};
+    const url = `${CMS_URL}/api/reviews?` +
+        qs.stringify({
+            filters: {slug: {$eq: slug}},
+            fields: ["slug", "title", "subtitle", "publishedAt", "body"],
+            populate: {image: {fields: ["url"]}},
+            pagination: {pageSize: 1, withCount: false},
+        }, {encodeValuesOnly: true});
+    console.log("getReview", url);
+    const response = await fetch(url);
+    const {data} = await response.json();
+    const {attributes} = data[0];
+    return {
+        slug: attributes.slug,
+        title: attributes.title,
+        date: attributes.publishedAt.slice(0, "yyyy-mm-dd".length),
+        image: CMS_URL + attributes.image.data.attributes.url,
+        body: await marked(attributes.body),
+    };
 }
 
 export async function getReviews(): Promise<Review[]> {
