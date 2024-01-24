@@ -13,7 +13,7 @@ export default async function ReviewsPage() {
     return (
         <>
             <Heading>Reviews</Heading>
-            <p>Here we'll list all the reviews</p>
+            <p>Here we&apos;ll list all the reviews</p>
             <ul className="flex flex-row flex-wrap gap-3">
                 {reviews.map((review: Review) => (
                     <li key={review.slug} className="bg-white border rounded shadow w-80 hover:shadow-xl">
