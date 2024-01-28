@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import type {Metadata} from "next";
 import Heading from "@/components/Heading";
 import {getReviews, Review} from "@/lib/reviews";
@@ -18,8 +19,8 @@ export default async function ReviewsPage() {
                 {reviews.map((review: Review) => (
                     <li key={review.slug} className="bg-white border rounded shadow w-80 hover:shadow-xl">
                         <Link href={`/reviews/${review.slug}`}>
-                            <img src={`${review.image}`} alt=""
-                                 width={320} height={180} className="rounded-t"
+                            <Image src={`${review.image}`} alt=""
+                                   width={320} height={180} className="rounded-t"
                             />
                             <h2 className="font-inter font-semibold py-1 text-center">
                                 {review.title}
