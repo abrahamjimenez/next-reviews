@@ -17,6 +17,7 @@ export default async function HomePage() {
           <Image
             src={review.image}
             alt=""
+            priority
             width={320}
             height={180}
             className="rounded-t sm:rounded-l sm:rounded-r-none"
